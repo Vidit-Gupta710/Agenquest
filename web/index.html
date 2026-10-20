@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>AgentLighthouse</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <style>
+    * { font-family: 'Inter', sans-serif; }
+  </style>
+</head>
+<body class="bg-gray-50 min-h-screen">
+  <div class="max-w-4xl mx-auto p-4">
+    <header class="mb-8">
+      <h1 class="text-3xl font-bold text-gray-900">AgentLighthouse</h1>
+      <p class="text-gray-600 mt-1">Test if AI agents can use your website</p>
+    </header>
+
+    <div class="bg-white rounded-lg shadow-sm p-6 mb-6">
+      <form id="audit-form" class="flex gap-3">
+        <input
+          id="url-input"
+          type="url"
+          placeholder="https://example.com"
+          class="flex-1 px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent"
+          required
+        >
+        <button
+          type="submit"
+          class="px-6 py-2 bg-blue-600 text-white rounded-lg hover:bg-blue-700 transition"
+        >
+          Start Audit
+        </button>
+      </form>
+      <p id="error-msg" class="text-red-600 mt-2 hidden"></p>
+    </div>
+
+    <div id="stages" class="space-y-4" hidden>
+      <div id="stage-signals" class="bg-white rounded-lg shadow-sm p-6 hidden">
+        <h2 class="text-lg font-semibold mb-4">Machine-Readability Signals</h2>
+        <div id="signals-grid" class="grid grid-cols-2 md:grid-cols-3 gap-3"></div>
+      </div>
+
+      <div id="stage-tasks" class="bg-white rounded-lg shadow-sm p-6 hidden">
+        <h2 class="text-lg font-semibold mb-4">Tasks</h2>
+        <div id="task-cards" class="space-y-3"></div>
+      </div>
+
+      <div id="stage-diagnose" class="bg-white rounded-lg shadow-sm p-6 hidden">
+        <h2 class="text-lg font-semibold mb-4">AI Diagnoses</h2>
+        <div id="diagnoses" class="space-y-3"></div>
+      </div>
+
+      <div id="stage-score" class="bg-white rounded-lg shadow-sm p-6 hidden">
+        <h2 class="text-lg font-semibold mb-4">Score</h2>
+        <div class="grid grid-cols-3 gap-4">
+          <div class="text-center p-4 bg-blue-50 rounded-lg">
+            <div id="score-total" class="text-4xl font-bold text-blue-600">0</div>
+            <div class="text-sm text-gray-600">Total</div>
+          </div>
+          <div class="text-center p-4 bg-green-50 rounded-lg">
+            <div id="score-grade" class="text-4xl font-bold text-green-600">F</div>
+            <div class="text-sm text-gray-600">Grade</div>
+          </div>
+          <div class="text-center p-4 bg-purple-50 rounded-lg">
+            <div id="agent-tax" class="text-4xl font-bold text-purple-600">$0.00</div>
+            <div class="text-sm text-gray-600">Agent Tax / task</div>
+          </div>
+        </div>
+      </div>
+
+      <div id="stage-peers" class="bg-white rounded-lg shadow-sm p-6 hidden">
+        <h2 class="text-lg font-semibold mb-4">Competitors</h2>
+        <div id="peers-list" class="space-y-2"></div>
+      </div>
+    </div>
+
+    <div id="done-view" class="bg-white rounded-lg shadow-sm p-6 hidden">
+      <h2 class="text-lg font-semibold mb-4">Audit Complete</h2>
+      <button id="new-audit" class="px-4 py-2 bg-gray-200 text-gray-800 rounded-lg hover:bg-gray-300">
+        New Audit
+      </button>
+    </div>
+  </div>
+
+  <script src="app.js"></script>
+</body>
+</html>
