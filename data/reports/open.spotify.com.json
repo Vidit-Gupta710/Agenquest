@@ -1,0 +1,175 @@
+{
+  "url": "https://open.spotify.com/",
+  "domain": "open.spotify.com",
+  "audited_at": "2026-10-20T18:01:23+00:00",
+  "site_type": "services",
+  "summary": "The homepage is currently displaying an error message, preventing users from accessing the music streaming service.",
+  "signals": {
+    "fetchable": true,
+    "text_rendered": false,
+    "llms_txt": false,
+    "robots_ok": false,
+    "sitemap": false,
+    "meta": false,
+    "fetch_error": null
+  },
+  "tasks": [
+    {
+      "id": "find_contact",
+      "label": "Find support contact",
+      "expected_steps": 6,
+      "outcome": "success",
+      "blocker": "none",
+      "answer": "Spotify does NOT offer phone support for general users. The primary contact method is via email/message through their support page.\n\n**Contact methods found:**\n- **Contact Page**: https://support.spotify.com/us/article/contact-us/ \u2014 Send a message through the support form\n- **Email**: support@spotify.com (verified by multiple sources)\n- **Twitter/X**: @spotify \u2014 The Spotify team is active on Twitter and provides customer support there\n\n**Spotify's own support page states**: \"Note: We currently don't offer support by phone. Send us a message and one of our customer service experts will help you out.\"\n\nFor corporate/business inquiries, the About Us contact page at https://www.spotify.com/us/about-us/contact/ is available.\n\n**Summary:** No phone number is available for general customer support. Contact Spotify via their support form at support.spotify.com, email at support@spotify.com, or Twitter @spotify.",
+      "final_url": "https://support.spotify.com/us/",
+      "blocker_detail": "",
+      "steps": 7,
+      "seconds": 64.0,
+      "run_id": "bebf1632-9732-4e54-aee6-110390328ca6",
+      "trace": [
+        "Visit Spotify homepage to find customer support contact info",
+        "Click Support link to find customer support contact info",
+        "Click Contact us link to find contact details",
+        "Wait for support page to fully load",
+        "Click About link to navigate to contact page",
+        "Find Spotify customer support contact email or phone",
+        "Finish task with contact information found",
+        "Task completed"
+      ]
+    },
+    {
+      "id": "find_policy",
+      "label": "Find refund policy",
+      "expected_steps": 6,
+      "outcome": "success",
+      "blocker": "none",
+      "answer": "Spotify's return/refund/cancellation policy (from the Paid Subscription Terms and Conditions): Users may cancel their Paid Subscription at any time through their account page. Cancellation takes effect from the end of the billing period in which you cancel (i.e., you retain access until the current paid billing period ends). Regarding refunds: Spotify generally does not provide refunds for unused portions of a billing cycle. Specifically, there are 'no refunds available for changing from your then-current Paid Subscription before the end of your then-current Paid Subscription period,' and any unused time already paid for will be forfeited. Exceptions exist if Spotify permanently discontinues a subscription (in which case a prorated refund of prepaid fees is issued) or if the subscription was purchased through a third party (in which case the third party handles refunds). For trial periods, users must cancel before the trial ends to avoid being charged. Time window: No fixed time window \u2014 cancellation can be done at any time, with effects taking place at the end of the current billing period. No explicit refund window is offered beyond this.",
+      "final_url": "https://www.spotify.com/us/legal/paid-subscription-terms/",
+      "blocker_detail": "",
+      "steps": 7,
+      "seconds": 159.0,
+      "run_id": "80fe07f8-253f-411c-9f8e-46b8f9ce54ed",
+      "trace": [
+        "Visit Spotify homepage to find return/refund policy",
+        "Click Support link to find refund policy",
+        "Visit Spotify legal page to find refund policy",
+        "Find refund/cancellation policy details",
+        "Check paid subscription terms for refund policy details",
+        "Extract cancellation and refund policy details",
+        "Return refund/cancellation policy findings",
+        "Task completed"
+      ]
+    },
+    {
+      "id": "list_services",
+      "label": "List offerings",
+      "expected_steps": 5,
+      "outcome": "success",
+      "blocker": "none",
+      "answer": "From the Spotify homepage (open.spotify.com), I found the following business offerings:\n\n1. **Music Streaming** - Spotify offers a music streaming platform with a vast catalog of songs. Users can browse trending songs, popular artists, popular albums and singles, playlists (like radio stations and featured charts), and build their own music library.\n\n2. **Premium Subscription Plans** - Spotify offers multiple paid premium tiers:\n   - Premium Individual\n   - Premium Duo\n   - Premium Family\n   - Premium Student\n   These plans provide ad-free listening and additional features.\n\n3. **Audiobooks Access** - Spotify offers an audiobooks service where users can access a library of audiobooks, available as part of their Premium plans.\n\nAdditionally, Spotify also offers a free ad-supported tier (Spotify Free), podcast streaming, and various services for creators, artists, developers, advertisers, and vendors.",
+      "final_url": "https://open.spotify.com/",
+      "blocker_detail": "No blockers encountered. The task was completed successfully by browsing the public Spotify homepage anonymously without logging in. All business offerings were visible on the page without any login wall or blocking popups.",
+      "steps": 3,
+      "seconds": 49.0,
+      "run_id": "26712310-6063-4bef-a37b-a9ce48591603",
+      "trace": [
+        "Visit Spotify homepage to find business offerings",
+        "Extract Spotify business offerings and products",
+        "Finish task with Spotify offerings found",
+        "Task completed"
+      ]
+    },
+    {
+      "id": "reach_enquiry",
+      "label": "Reach enquiry form",
+      "expected_steps": 8,
+      "outcome": "success",
+      "blocker": "none",
+      "answer": "Successfully found the Spotify Advertising enquiry form at https://ads.spotify.com/en-US/get-started/. The form is visible and contains the following fields: 'I am' (dropdown: brand/business, agency, creator, educational institution, Spotify premium/free user, other), 'looking-to' (dropdown: drive revenue, grow awareness, drive traffic, promote music, get help, other), First Name, Last Name, Email Address, Company, Website, Country, and State. This form is designed for advertisers to request a quote or enquire about Spotify advertising services. No login, personal payment details, or form submission was done.",
+      "final_url": "https://ads.spotify.com/en-US/get-started/",
+      "blocker_detail": "No blocker encountered. The enquiry form was found on the Spotify Advertising page (ads.spotify.com) by navigating through the Spotify website's footer links to Advertising, then clicking 'Start now' on the Get Started page, which revealed the contact/enquiry form.",
+      "steps": 18,
+      "seconds": 172.0,
+      "run_id": "9e703bf4-ac90-432f-a5c5-84e3bc0c6273",
+      "trace": [
+        "Navigate to Spotify contact page to find enquiry or booking form",
+        "Check if contact form is visible on the page",
+        "Visit Spotify contact/support page to find enquiry or booking form",
+        "Visit Spotify advertising contact page for enquiry or booking form",
+        "Visit Spotify contact/support page",
+        "Visit Vendors page to find enquiry or booking form",
+        "Visit Spotify vendors contact page for enquiry form",
+        "Visit Spotify advertising contact page for enquiry form",
+        "Visit Spotify advertising page to find booking or enquiry form",
+        "Click Get started to access the enquiry form",
+        "Click Start now to access the enquiry form",
+        "Visit Spotify Ads get started page to find enquiry form",
+        "Interact with enquiry form to make it visible",
+        "Report success - enquiry form found and visible on Spotify Ads page",
+        "Task completed"
+      ]
+    }
+  ],
+  "diagnoses": [
+    {
+      "task_id": "reach_enquiry",
+      "blocker": "none",
+      "root_cause": "No blocker encountered. The enquiry form was found on the Spotify Advertising page (ads.spotify.com) by navigating through the Spotify website's footer links to Advertising, then clicking 'Start now' on the Get Started page, which revealed the contact/enquiry form.",
+      "fix": "No fix is necessary as the agent successfully found the enquiry form.",
+      "severity": "low",
+      "confidence": 1
+    }
+  ],
+  "score": {
+    "total": 77,
+    "grade": "B",
+    "success": 55,
+    "efficiency": 16,
+    "readability": 6
+  },
+  "agent_tax": {
+    "avg_steps": 8.8,
+    "usd_per_task": 0.14
+  },
+  "peers": [
+    {
+      "domain": "cnet.com",
+      "signals": {
+        "fetchable": true,
+        "text_rendered": true,
+        "llms_txt": false,
+        "robots_ok": true,
+        "sitemap": true,
+        "meta": true,
+        "fetch_error": null
+      },
+      "readability": 21
+    },
+    {
+      "domain": "whathifi.com",
+      "signals": {
+        "fetchable": true,
+        "text_rendered": true,
+        "llms_txt": false,
+        "robots_ok": true,
+        "sitemap": true,
+        "meta": true,
+        "fetch_error": null
+      },
+      "readability": 21
+    },
+    {
+      "domain": "tidal.com",
+      "signals": {
+        "fetchable": false,
+        "text_rendered": false,
+        "llms_txt": false,
+        "robots_ok": true,
+        "sitemap": true,
+        "meta": false,
+        "fetch_error": "target_http_error"
+      },
+      "readability": 7
+    }
+  ]
+}

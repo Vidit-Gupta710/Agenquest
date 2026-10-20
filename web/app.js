@@ -3,6 +3,12 @@ let currentAuditId = null;
 let currentUrl = null;
 let currentReport = null;
 
+function escapeHtml(text) {
+  const div = document.createElement("div");
+  div.textContent = text;
+  return div.innerHTML;
+}
+
 async function startAudit(url) {
   const res = await fetch("/api/audit", {
     method: "POST",
@@ -17,12 +23,19 @@ async function startAudit(url) {
   currentAuditId = audit_id;
   currentUrl = url;
   const stream = new EventSource(`/api/audit/${audit_id}/events`);
+  console.log("SSE connected to", `/api/audit/${audit_id}/events`);
   stream.onmessage = (msg) => {
+    console.log("SSE message:", msg.data);
     const e = JSON.parse(msg.data);
+    console.log("Event type:", e.type, e);
     (render[e.type] || (() => {}))(e);
     if (e.type === "done" || e.type === "error") stream.close();
   };
-  stream.onerror = () => stream.close();
+  stream.onerror = (err) => {
+    console.error("SSE error:", err);
+    stream.close();
+  };
+  stream.onopen = () => console.log("SSE open");
 }
 
 const signalLabels = {
@@ -36,10 +49,12 @@ const signalLabels = {
 
 const render = {
   stage: (e) => {
+    console.log("Render stage:", e.stage);
     document.getElementById("stages").hidden = false;
     document.getElementById("submit-btn").disabled = true;
   },
   signals: (e) => {
+    console.log("Render signals:", e.signals);
     document.getElementById("stage-signals").hidden = false;
     const grid = document.getElementById("signals-grid");
     grid.innerHTML = "";
@@ -49,13 +64,14 @@ const render = {
       if (v) passed++;
       const div = document.createElement("div");
       div.className = `p-3 rounded-lg ${v ? "bg-green-50 text-green-800 border border-green-200" : "bg-red-50 text-red-800 border border-red-200"}`;
-      div.innerHTML = `<div class="font-medium capitalize text-sm">${signalLabels[k] || k.replace("_", " ")}</div><div class="text-3xl font-bold mt-1">${v ? "✓" : "✗"}</div>`;
+      div.innerHTML = `<div class="font-medium capitalize text-sm">${signalLabels[k] || k.replace("_", " ")}</div><div class="text-3xl font-bold mt-1">${v ? "Yes" : "No"}</div>`;
       grid.appendChild(div);
     }
     const total = Object.keys(e.signals).filter(k => k !== "fetch_error").length;
     document.getElementById("signals-summary").textContent = `${passed}/${total} passed`;
   },
   tasks: (e) => {
+    console.log("Render tasks:", e.tasks);
     document.getElementById("stage-tasks").hidden = false;
     const container = document.getElementById("task-cards");
     container.innerHTML = "";
@@ -65,19 +81,21 @@ const render = {
       div.className = "task-card p-3 border rounded-lg bg-gray-50";
       div.innerHTML = `<div class="font-medium">${t.label}</div><div class="text-sm text-gray-600">Pending...</div>`;
       container.appendChild(div);
-    }
+    });
   },
   task_update: (e) => {
+    console.log("Render task_update:", e.task_id, e.status, e.steps);
     const card = document.getElementById(`task-${e.task_id}`);
     if (card) {
       let statusText = e.status === "RUNNING" ? `Running... ${e.steps} steps` : e.status;
       if (e.streaming_url && e.status === "RUNNING") {
-        statusText += ` <a href="${e.streaming_url}" target="_blank" class="text-blue-600 hover:underline text-xs">▶ Live view</a>`;
+        statusText += ` <a href="${e.streaming_url}" target="_blank" class="text-blue-600 hover:underline text-xs">Live view</a>`;
       }
       card.querySelector("div:last-child").innerHTML = statusText;
     }
   },
   task_done: (e) => {
+    console.log("Render task_done:", e.task);
     const card = document.getElementById(`task-${e.task.id}`);
     if (card) {
       const color = e.task.outcome === "success" ? "green" : e.task.outcome === "partial" ? "yellow" : "red";
@@ -85,8 +103,8 @@ const render = {
       card.innerHTML = `
         <div class="font-medium">${e.task.label}</div>
         <div class="text-sm mt-1">
-          <span class="font-medium capitalize">${e.task.outcome}</span> •
-          ${e.task.steps} steps (expected ${e.task.expected_steps}) •
+          <span class="font-medium capitalize">${e.task.outcome}</span> -
+          ${e.task.steps} steps (expected ${e.task.expected_steps}) -
           Blocker: ${e.task.blocker}
         </div>
         ${e.task.answer ? `<div class="text-xs text-gray-600 mt-1">${e.task.answer.substring(0, 120)}${e.task.answer.length > 120 ? "..." : ""}</div>` : ""}
@@ -94,6 +112,7 @@ const render = {
     }
   },
   diagnosis: (e) => {
+    console.log("Render diagnosis:", e.diagnosis);
     document.getElementById("stage-diagnose").hidden = false;
     const div = document.createElement("div");
     div.className = `diagnosis-card p-4 border rounded-lg bg-white border-l-4 diagnosis-severity-${e.diagnosis.severity || "low"}`;
@@ -116,6 +135,7 @@ const render = {
     document.getElementById("diagnoses").appendChild(div);
   },
   score: (e) => {
+    console.log("Render score:", e.score);
     document.getElementById("stage-score").hidden = false;
     animateCount("score-total", e.score.total);
     animateCount("score-success", e.score.success);
@@ -125,6 +145,7 @@ const render = {
     document.getElementById("agent-tax").textContent = `$${e.agent_tax.usd_per_task}`;
   },
   peers: (e) => {
+    console.log("Render peers:", e.peers);
     document.getElementById("stage-peers").hidden = false;
     const container = document.getElementById("peers-list");
     container.innerHTML = "";
@@ -133,9 +154,10 @@ const render = {
       div.className = "p-3 border rounded-lg bg-gray-50";
       div.innerHTML = `<div class="font-medium">${p.domain}</div><div class="text-sm text-gray-600">Readability: ${p.readability}/25</div>`;
       container.appendChild(div);
-    }
+    });
   },
   done: (e) => {
+    console.log("Render done:", e.report);
     currentReport = e.report;
     document.getElementById("done-view").hidden = false;
     document.getElementById("view-report").hidden = false;
@@ -143,6 +165,7 @@ const render = {
     document.getElementById("submit-btn").disabled = false;
   },
   error: (e) => {
+    console.error("Render error:", e.message);
     document.getElementById("error-msg").textContent = e.message || "Something went wrong";
     document.getElementById("error-msg").hidden = false;
     document.getElementById("submit-btn").disabled = false;
@@ -162,12 +185,6 @@ function animateCount(id, target) {
     if (progress < 1) requestAnimationFrame(step);
   }
   requestAnimationFrame(step);
-}
-
-function escapeHtml(text) {
-  const div = document.createElement("div");
-  div.textContent = text;
-  return div.innerHTML;
 }
 
 function loadLeaderboard() {
