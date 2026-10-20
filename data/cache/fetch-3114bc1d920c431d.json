@@ -1,0 +1,1 @@
+{"results": [], "errors": [{"url": "https://bookswagon.com/", "error": "proxy_error"}, {"url": "https://bookswagon.com/robots.txt", "error": "proxy_error"}, {"url": "https://bookswagon.com/llms.txt", "error": "proxy_error"}, {"url": "https://bookswagon.com/sitemap.xml", "error": "proxy_error"}], "request_id": "cb9dfe6d-50fa-4227-8cbb-dd94362f8821"}
