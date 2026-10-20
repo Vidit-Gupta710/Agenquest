@@ -1,0 +1,177 @@
+{
+  "url": "https://example.com",
+  "domain": "example.com",
+  "audited_at": "2026-10-20T16:37:12+00:00",
+  "site_type": "services",
+  "summary": "Example.com is an IANA-reserved domain intended solely for illustrative examples in technical documentation and RFCs.",
+  "signals": {
+    "fetchable": true,
+    "text_rendered": false,
+    "llms_txt": false,
+    "robots_ok": false,
+    "sitemap": false,
+    "meta": false,
+    "fetch_error": null
+  },
+  "tasks": [
+    {
+      "id": "find_contact",
+      "label": "Find support contact",
+      "expected_steps": 6,
+      "outcome": "success",
+      "blocker": "none",
+      "answer": "I found customer support contact information for IANA (the organization that manages the example.com domain). Contact details:\n\n- Email: iana@iana.org\n- Phone: +1-424-254-5300\n- Fax: +1-424-254-5033\n- Mail: Internet Assigned Numbers Authority, 12025 Waterfront Drive, Suite 300, Los Angeles CA 90094, USA\n- Abuse inquiries: https://www.iana.org/help/abuse\n\nNote: example.com is an example domain reserved by IANA for documentation purposes and is not an actual service with its own dedicated customer support. For matters related to the domain, the IANA contact information above is the relevant support contact.",
+      "final_url": "https://www.iana.org/contact",
+      "blocker_detail": "No blockers encountered. The task was completed successfully by visiting example.com and following the IANA help link to find official contact information.",
+      "steps": 6,
+      "seconds": 64.0,
+      "run_id": "4598e4dc-62e2-4d53-b93a-7df8124a1c27",
+      "trace": [
+        "Visit example.com to find customer support contact info",
+        "Find customer support contact info on example.com",
+        "Check IANA help page for contact information",
+        "Find IANA contact information for example.com",
+        "Extract all contact info from IANA contact page",
+        "Report found customer support contact information",
+        "Task completed"
+      ]
+    },
+    {
+      "id": "find_policy",
+      "label": "Find refund policy",
+      "expected_steps": 6,
+      "outcome": "failure",
+      "blocker": "element_not_found",
+      "answer": "example.com is a placeholder domain reserved for documentation and examples. It is explicitly stated on the page that this domain is not a service and should not be used for testing or monitoring purposes. As such, there is no return policy, refund policy, or cancellation policy available on this website. The site is purely informational and contains no commercial offerings or legal policies related to purchases, services, or orders.",
+      "final_url": "https://example.com",
+      "blocker_detail": "The website example.com is a placeholder documentation domain, not a commercial service. It has no return/refund/cancellation policy because it does not offer any products, services, or purchases that would have such a policy.",
+      "steps": 4,
+      "seconds": 28.0,
+      "run_id": "1aa8d66f-7be9-4a78-ae47-6ec8ef9e90ef",
+      "trace": [
+        "Visit example.com to find return/refund/cancellation policy",
+        "Check for policy content on example.com",
+        "Check if there is policy info on IANA example domains page",
+        "Return result - example.com has no policy to find",
+        "Task completed"
+      ]
+    },
+    {
+      "id": "list_services",
+      "label": "List offerings",
+      "expected_steps": 5,
+      "outcome": "failure",
+      "blocker": "other",
+      "answer": "After visiting https://example.com, I found that this is not a real business website. It is a placeholder domain reserved for illustrative and documentation purposes only. The page content explicitly states: 'This domain is for use in illustrative examples in documents. You may use this domain in literature without prior coordination or asking for permission.' There are no products or services listed because this is not a commercial business - it is simply a reserved domain used by IANA (Internet Assigned Numbers Authority) for documentation purposes. The only link on the page leads to https://iana.org/help/example-domains for more information about example domains.",
+      "final_url": "https://example.com/",
+      "blocker_detail": "The website is not a real business - it is a placeholder domain reserved for documentation purposes, so there are no products or services to list.",
+      "steps": 3,
+      "seconds": 24.0,
+      "run_id": "8e967289-a335-45b3-acaa-2d7a5daef0e1",
+      "trace": [
+        "Navigate to example.com to find products or services",
+        "Understand what example.com business offers",
+        "Finish task - example.com has no products or services",
+        "Task completed"
+      ]
+    },
+    {
+      "id": "reach_enquiry",
+      "label": "Reach enquiry form",
+      "expected_steps": 8,
+      "outcome": "failure",
+      "blocker": "none",
+      "answer": "example.com is a placeholder domain used exclusively for documentation purposes. The website explicitly states it is not a service and should not be used for testing. There is no booking, enquiry, or quote request functionality available on this site. No form was found to fulfill the task requirements.",
+      "final_url": "https://example.com",
+      "blocker_detail": "The website example.com is a placeholder domain with no booking, enquiry, or quote request features. It is not a service website but a reserved documentation domain.",
+      "steps": 4,
+      "seconds": 28.0,
+      "run_id": "91b91338-c958-4f35-8f98-645525d8d8a6",
+      "trace": [
+        "Visit the website to find booking/enquiry form",
+        "Understand page content for booking form",
+        "Check if this link has booking or enquiry information",
+        "Finish task as example.com has no booking/enquiry form",
+        "Task completed"
+      ]
+    }
+  ],
+  "diagnoses": [
+    {
+      "task_id": "find_policy",
+      "blocker": "other",
+      "root_cause": "DEMO_MODE: diagnosis not cached. Run without DEMO_MODE=1 to generate real diagnoses.",
+      "fix": "Add LLM API key to .env and run audit again.",
+      "severity": "low",
+      "confidence": 0.1
+    },
+    {
+      "task_id": "list_services",
+      "blocker": "other",
+      "root_cause": "DEMO_MODE: diagnosis not cached. Run without DEMO_MODE=1 to generate real diagnoses.",
+      "fix": "Add LLM API key to .env and run audit again.",
+      "severity": "low",
+      "confidence": 0.1
+    },
+    {
+      "task_id": "reach_enquiry",
+      "blocker": "other",
+      "root_cause": "DEMO_MODE: diagnosis not cached. Run without DEMO_MODE=1 to generate real diagnoses.",
+      "fix": "Add LLM API key to .env and run audit again.",
+      "severity": "low",
+      "confidence": 0.1
+    }
+  ],
+  "score": {
+    "total": 25,
+    "grade": "F",
+    "success": 14,
+    "efficiency": 5,
+    "readability": 6
+  },
+  "agent_tax": {
+    "avg_steps": 4.2,
+    "usd_per_task": 0.068
+  },
+  "peers": [
+    {
+      "domain": "rfc-editor.org",
+      "signals": {
+        "fetchable": true,
+        "text_rendered": true,
+        "llms_txt": false,
+        "robots_ok": true,
+        "sitemap": true,
+        "meta": true,
+        "fetch_error": null
+      },
+      "readability": 21
+    },
+    {
+      "domain": "pike.lysator.liu.se",
+      "signals": {
+        "fetchable": true,
+        "text_rendered": true,
+        "llms_txt": false,
+        "robots_ok": true,
+        "sitemap": false,
+        "meta": false,
+        "fetch_error": null
+      },
+      "readability": 15
+    },
+    {
+      "domain": "ietf.org",
+      "signals": {
+        "fetchable": true,
+        "text_rendered": true,
+        "llms_txt": false,
+        "robots_ok": true,
+        "sitemap": true,
+        "meta": true,
+        "fetch_error": null
+      },
+      "readability": 21
+    }
+  ]
+}

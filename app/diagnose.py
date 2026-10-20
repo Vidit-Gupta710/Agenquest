@@ -1,6 +1,7 @@
 """LLM reads a failed or slow agent run and explains the blocker and the fix."""
 import asyncio
 import json
+import os
 
 from app import llm
 from app.tasks import BLOCKERS
@@ -17,12 +18,22 @@ root_cause and set confidence below 0.4."""
 FIELDS = ("label", "outcome", "blocker", "blocker_detail", "answer", "steps",
           "expected_steps", "final_url", "trace")
 
+DEMO_DIAGNOSIS = {
+    "blocker": "other",
+    "root_cause": "DEMO_MODE: diagnosis not cached. Run without DEMO_MODE=1 to generate real diagnoses.",
+    "fix": "Add LLM API key to .env and run audit again.",
+    "severity": "low",
+    "confidence": 0.1,
+}
+
 
 def needs_diagnosis(t):
     return t.get("outcome") != "success" or t["steps"] > 2 * t["expected_steps"]
 
 
 async def diagnose(task, url):
+    if os.getenv("DEMO_MODE") == "1":
+        return {"task_id": task["id"], **DEMO_DIAGNOSIS}
     evidence = {k: task.get(k) for k in FIELDS} | {"site": url}
     d = await llm.ask_json(SYSTEM, json.dumps(evidence))
     if d.get("blocker") not in BLOCKERS:
