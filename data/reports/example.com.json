@@ -1,0 +1,196 @@
+{
+  "url": "https://example.com",
+  "domain": "example.com",
+  "audited_at": "2026-11-20T17:08:27+00:00",
+  "site_type": "services",
+  "summary": "Example.com is a placeholder domain used for documentation and examples, not an actual service.",
+  "signals": {
+    "fetchable": true,
+    "text_rendered": false,
+    "llms_txt": false,
+    "robots_ok": false,
+    "sitemap": false,
+    "meta": false,
+    "fetch_error": null
+  },
+  "tasks": [
+    {
+      "id": "book_slot",
+      "label": "Book the earliest slot",
+      "signed_in": false,
+      "milestones": [
+        "service_chosen",
+        "location_chosen",
+        "slot_chosen",
+        "details_filled",
+        "ready_to_confirm"
+      ],
+      "expected_steps": 22,
+      "outcome": "failure",
+      "furthest_milestone": "none",
+      "blocker": "element_not_found",
+      "total": "",
+      "answer": "The journey could not be completed because example.com is a placeholder documentation domain with no booking services, locations, or slots available.",
+      "discount": "",
+      "final_url": "https://example.com/",
+      "item_name": "",
+      "item_price": "",
+      "coupon_code": "",
+      "blocker_detail": "The website example.com is a placeholder domain used for documentation purposes only. It contains no services, booking options, locations, or interactive features. The page explicitly states it is not a functional service and advises users not to rely on it for testing or monitoring. The task requires booking a service, choosing locations, and selecting time slots, none of which exist on this website.",
+      "steps": 3,
+      "seconds": 26.0,
+      "run_id": "c02da5ac-9b21-4b57-b895-afe2b94ed402",
+      "trace": [
+        "Visit example.com to start the booking journey",
+        "Understand the page content and available services",
+        "Task blocked - example.com has no booking services",
+        "Task completed"
+      ],
+      "progress": 0.0
+    },
+    {
+      "id": "get_quote",
+      "label": "Get a quote",
+      "signed_in": false,
+      "milestones": [
+        "quote_page_found",
+        "form_filled",
+        "ready_to_submit"
+      ],
+      "expected_steps": 12,
+      "outcome": "failure",
+      "furthest_milestone": "none",
+      "blocker": "no_matching_item",
+      "total": "",
+      "answer": "The task cannot be completed because https://example.com is a documentation placeholder domain, not a service website. It explicitly states it is not a service and has no quote request functionality, forms, or service offerings.",
+      "discount": "",
+      "final_url": "https://example.com/",
+      "item_name": "",
+      "item_price": "",
+      "coupon_code": "",
+      "blocker_detail": "The website https://example.com is a placeholder domain for documentation examples. It explicitly states: 'This is not a service; avoid relying on it for testing and monitoring purposes.' There is no quote request form, no service offerings, no way to request a quote for 'example.com documentation', and no forms to fill. The only link on the page goes to https://iana.org/help/example-domains. None of the milestones (quote_page_found, form_filled, ready_to_submit) can be achieved because the website does not provide any services or quote functionality.",
+      "steps": 3,
+      "seconds": 44.0,
+      "run_id": "606e67eb-6741-4b01-96af-e9c1b2193147",
+      "trace": [
+        "Navigate to example.com to start the customer journey",
+        "Understand the page content and available options",
+        "Report that the task cannot be completed because example.com is not a service website",
+        "Task completed"
+      ],
+      "progress": 0.0
+    },
+    {
+      "id": "compare_offers",
+      "label": "Compare offerings",
+      "signed_in": false,
+      "milestones": [
+        "list_found",
+        "prices_found",
+        "best_value_reported"
+      ],
+      "expected_steps": 12,
+      "outcome": "failure",
+      "furthest_milestone": "list_found",
+      "blocker": "no_matching_item",
+      "total": "",
+      "answer": "example.com is not a business offering documentation services. It is a reserved placeholder domain maintained by IANA for illustrative use in documents and examples. The domain explicitly does not offer commercial services, products, or any purchasable documentation - its sole purpose is to serve as a safe example domain for documentation worldwide.",
+      "discount": "",
+      "final_url": "https://iana.org/help/example-domains",
+      "item_name": "",
+      "item_price": "",
+      "coupon_code": "",
+      "blocker_detail": "The website example.com is not a commercial business. It is a reserved placeholder domain maintained by IANA specifically for use in documentation and examples. The site explicitly states it does not represent a business, offer commercial services, or have any pricing. There are no products, services, or documentation to purchase - the domain exists solely as a technical placeholder for illustrative purposes in software documentation. Therefore, it was impossible to find prices or determine a 'best value' option for example.com documentation as there are no documentation offerings available for purchase.",
+      "steps": 5,
+      "seconds": 25.0,
+      "run_id": "59f308ae-f67e-4f48-aac6-c9bc6a18712f",
+      "trace": [
+        "Navigate to example.com to start the task",
+        "Understand what the business offers",
+        "Check the Learn more link for additional information about example.com documentation",
+        "Extract details from the IANA page",
+        "Report findings - example.com is not a business with offerings or pricing",
+        "Task completed"
+      ],
+      "progress": 0.33
+    }
+  ],
+  "diagnoses": [
+    {
+      "task_id": "book_slot",
+      "blocker": "element_not_found",
+      "root_cause": "The site example.com is a placeholder page with no booking services, locations, or time\u2011slot elements, so the agent cannot find any interactive controls to proceed.",
+      "fix": "Replace the placeholder content with a functional booking interface. For example, add a form with labeled controls:\n\n```html\n<form id=\"booking-form\">\n  <label for=\"service\">Service:</label>\n  <select id=\"service\" name=\"service\">\n    <option value=\"consultation\">Consultation</option>\n    <option value=\"repair\">Repair</option>\n  </select>\n  <label for=\"location\">Location:</label>\n  <input type=\"text\" id=\"location\" name=\"location\" placeholder=\"Enter location\" required>\n  <label for=\"slot\">Time Slot:</label>\n  <input type=\"datetime-local\" id=\"slot\" name=\"slot\" required>\n  <button type=\"submit\">Book Now</button>\n</form>\n```\nEnsure each control has an associated `<label>` for accessibility and that the form is reachable via the site\u2019s navigation.",
+      "severity": "high",
+      "confidence": 1.0
+    },
+    {
+      "task_id": "get_quote",
+      "blocker": "no_matching_item",
+      "root_cause": "The site https://example.com is a placeholder with no quote request form or service offerings; the only link leads to iana.org, so the agent cannot find a quote page.",
+      "fix": "Add a visible quote request form or remove the placeholder content. Example:\n<form id=\"quote-form\" aria-label=\"Request a Quote\">\n  <label for=\"service\">Service:</label>\n  <input type=\"text\" id=\"service\" name=\"service\" required>\n  <button type=\"submit\">Get a Quote</button>\n</form>",
+      "severity": "high",
+      "confidence": 1.0
+    },
+    {
+      "task_id": "compare_offers",
+      "blocker": "no_matching_item",
+      "root_cause": "The site is a placeholder domain maintained by IANA and contains no commercial products, services, or pricing information, so the agent cannot find any items to compare.",
+      "fix": "Add a sample product listing page that follows accessible markup conventions. For example:\n\n```html\n<div class=\"product\" aria-label=\"Sample Product\">\n  <h2 class=\"product-title\">Example Product</h2>\n  <p class=\"product-price\">$9.99</p>\n  <button class=\"add-to-cart\" aria-label=\"Add Example Product to cart\">Add to cart</button>\n</div>\n```\n\nThis provides a clear, labeled element for the agent to locate and compare.",
+      "severity": "low",
+      "confidence": 0.95
+    }
+  ],
+  "score": {
+    "total": 13,
+    "grade": "F",
+    "success": 7,
+    "efficiency": 2,
+    "readability": 4
+  },
+  "agent_tax": {
+    "avg_steps": 3.7,
+    "usd_per_task": 0.059
+  },
+  "peers": [
+    {
+      "domain": "stackoverflow.com",
+      "signals": {
+        "fetchable": true,
+        "text_rendered": true,
+        "llms_txt": false,
+        "robots_ok": false,
+        "sitemap": false,
+        "meta": true,
+        "fetch_error": null
+      },
+      "readability": 9
+    },
+    {
+      "domain": "similarsites.com",
+      "signals": {
+        "fetchable": true,
+        "text_rendered": true,
+        "llms_txt": false,
+        "robots_ok": false,
+        "sitemap": false,
+        "meta": true,
+        "fetch_error": null
+      },
+      "readability": 9
+    },
+    {
+      "domain": "news.ycombinator.com",
+      "signals": {
+        "fetchable": true,
+        "text_rendered": true,
+        "llms_txt": false,
+        "robots_ok": true,
+        "sitemap": false,
+        "meta": false,
+        "fetch_error": null
+      },
+      "readability": 9
+    }
+  ]
+}

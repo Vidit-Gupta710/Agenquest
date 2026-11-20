@@ -1,0 +1,10 @@
+﻿.env
+__pycache__/
+.pytest_cache/
+.venv/
+*.pyc
+data/accounts.json
+data/activity.jsonl
+data/cache/private/
+.claude/
+*.pdf

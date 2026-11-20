@@ -1,0 +1,164 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>AgentLighthouse · My Account</title>
+  <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'%3E%3Ctext x='12' y='18' text-anchor='middle' font-size='18'%3E%F0%9F%9B%92%3C/text%3E%3C/svg%3E">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="design.css?v=8">
+</head>
+<body>
+  <div class="topband">
+  <nav class="nav">
+    <div class="nav-inner">
+      <a href="/" class="brand">
+        <span class="logo">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2v6"/><path d="M12 22V10"/><circle cx="12" cy="10" r="3"/><path d="M5 22h14"/></svg>
+        </span>
+        <span>AgentLighthouse</span>
+      </a>
+      <div class="nav-links">
+        <a href="/" class="nav-link">Audit</a>
+        <a href="/account.html" class="nav-link active">My Account</a>
+      </div>
+    </div>
+  </nav>
+
+  <div class="container">
+    <section class="account-hero">
+      <div class="eyebrow">
+        <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="11" width="18" height="11" rx="2" ry="2"/><path d="M7 11V7a5 5 0 0 1 10 0v4"/></svg>
+        Signed-in actions &middot; never buys, never sends
+      </div>
+      <h1>Let the agent work in your <span class="accent">real</span> account.</h1>
+      <p class="sub">Sign in once in a secure TinyFish browser. Then the agent fills your cart, drafts an application, or writes a message &mdash; and stops on the cart page or with Send on screen, for you to press yourself.</p>
+      <div class="trust-row">
+        <span class="trust"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>Password never stored</span>
+        <span class="trust"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>Agent never buys or sends</span>
+        <span class="trust"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>Disconnect anytime</span>
+      </div>
+    </section>
+  </div>
+  </div>
+
+  <main class="container">
+
+    <section class="step-group">
+      <div id="step-1" class="step active">
+        <div class="step-num">1</div>
+        <div class="step-body">
+          <h2>Connected accounts</h2>
+          <div class="hint">Each saved account is a TinyFish Browser Context Profile. Your password is never stored or logged.</div>
+          <div id="accounts-list" class="accounts-list"></div>
+          <button id="disconnect-all" class="btn btn-danger hidden" type="button">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" width="14" height="14"><path d="M3 6h18"/><path d="M19 6l-2 14H7L5 6"/><path d="M10 11v6M14 11v6"/><path d="M9 6V3h6v3"/></svg>
+            Disconnect all & delete profile
+          </button>
+        </div>
+      </div>
+
+      <div id="step-2" class="step">
+        <div class="step-num">2</div>
+        <div class="step-body">
+          <h2>Connect an account</h2>
+          <div class="hint">A secure TinyFish browser opens below with the site's sign-in page. Click into the canvas, then sign in exactly as you normally would.</div>
+          <form id="connect-form">
+            <div class="field-row">
+              <div class="field">
+                <label for="login-url">Site sign-in URL</label>
+                <input id="login-url" type="url" required placeholder="https://www.amazon.in/ap/signin" spellcheck="false" autocomplete="off">
+              </div>
+              <div class="field" style="justify-content: flex-end;">
+                <label>&nbsp;</label>
+                <button id="connect-btn" type="submit" class="btn btn-accent">
+                  Open secure browser
+                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 3h6v6"/><path d="M10 14 21 3"/><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/></svg>
+                </button>
+              </div>
+            </div>
+          </form>
+          <p id="connect-err" class="hidden" style="color: var(--danger); font-size: 13px; margin-top: 10px;"></p>
+
+          <div id="login-wrap" class="login-wrap hidden">
+            <div class="login-bar">
+              <span style="display: inline-flex; align-items: center; gap: 6px;">
+                <span style="width:8px;height:8px;border-radius:999px;background:#ef4444;box-shadow:0 0 8px #ef4444;"></span>
+                Live TinyFish browser
+              </span>
+              <span class="login-url" id="live-url">(loading)</span>
+              <span class="muted">Expires in <span id="expires-in">—</span></span>
+            </div>
+            <canvas id="login-canvas" tabindex="0" width="1280" height="800"></canvas>
+            <div class="login-actions">
+              <button id="signed-in-btn" class="btn btn-primary" type="button">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" width="14" height="14"><polyline points="20 6 9 17 4 12"/></svg>
+                I'm signed in — save session
+              </button>
+              <button id="cancel-login" class="btn" type="button">Cancel</button>
+              <span class="muted" style="font-size: 12px; margin-left: auto; align-self: center;">Click once into the canvas, then type / click as normal.</span>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div id="step-3" class="step">
+        <div class="step-num">3</div>
+        <div class="step-body">
+          <h2>Ask the agent</h2>
+          <div class="hint">Give one clear instruction. The agent will search, add to cart (or draft the message/application), and stop — never checkout, never send.</div>
+          <form id="run-form" style="display: flex; flex-direction: column; gap: 14px;">
+            <div class="field-row">
+              <div class="field">
+                <label for="run-site">Site (connected account)</label>
+                <input id="run-site" type="text" required placeholder="www.amazon.in" spellcheck="false">
+              </div>
+              <div class="field">
+                <label for="run-action">What should the agent do</label>
+                <select id="run-action">
+                  <option value="cart">Fill my cart (shops)</option>
+                  <option value="apply_job">Prepare a job application</option>
+                  <option value="connect_note">Draft a connection note</option>
+                  <option value="message_draft">Draft a message</option>
+                </select>
+              </div>
+            </div>
+            <div class="field">
+              <label for="run-request">Request</label>
+              <textarea id="run-request" required placeholder="Add the cheapest Nike running shoes in UK size 9 under ₹3,000, apply the best coupon"></textarea>
+            </div>
+            <div>
+              <button id="run-btn" type="submit" class="btn btn-accent">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" width="14" height="14"><polygon points="5 3 19 12 5 21 5 3"/></svg>
+                Run agent
+              </button>
+            </div>
+          </form>
+
+          <div id="run-panel" class="run-panel hidden">
+            <div class="status">
+              <span class="stage-pill"><span class="spin"></span><span id="run-status">Starting…</span></span>
+            </div>
+            <div class="trace" id="run-trace"></div>
+            <div id="run-stream" style="margin-top: 12px;"></div>
+            <pre id="run-result" class="hidden"></pre>
+            <div class="muted" style="font-size: 12px; margin-top: 10px;">
+              Nothing is bought, sent or submitted. The agent stops with the final button visible for you to press yourself.
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <div id="toasts" class="toasts"></div>
+
+  <footer>
+    Built on <a href="https://tinyfish.ai" target="_blank" rel="noopener">TinyFish Browser Context Profiles</a>. Passwords never touch our server &mdash; they go straight from your keyboard into the website inside TinyFish's browser.
+  </footer>
+
+  <script src="account.js?v=5"></script>
+</body>
+</html>

@@ -1,0 +1,191 @@
+{
+  "url": "https://httpbin.org",
+  "domain": "httpbin.org",
+  "audited_at": "2026-11-20T17:11:37+00:00",
+  "site_type": "services",
+  "summary": "A lightweight HTTP request & response testing service for developers.",
+  "signals": {
+    "fetchable": true,
+    "text_rendered": false,
+    "llms_txt": false,
+    "robots_ok": true,
+    "sitemap": false,
+    "meta": false,
+    "fetch_error": null
+  },
+  "tasks": [
+    {
+      "id": "book_slot",
+      "label": "Book the earliest slot",
+      "signed_in": false,
+      "milestones": [
+        "service_chosen",
+        "location_chosen",
+        "slot_chosen",
+        "details_filled",
+        "ready_to_confirm"
+      ],
+      "expected_steps": 22,
+      "outcome": "failure",
+      "furthest_milestone": "none",
+      "blocker": "no_matching_item",
+      "total": "",
+      "answer": "The task cannot be completed. httpbin.org is an HTTP request/response testing service, not a booking website. It has no booking services, no locations, no slots, and no 'GET /ip' booking option. The requested customer journey of booking a service with locations and slots does not exist on this site.",
+      "discount": "",
+      "final_url": "https://httpbin.org",
+      "item_name": "",
+      "item_price": "",
+      "coupon_code": "",
+      "blocker_detail": "The website httpbin.org is an HTTP Request & Response testing service, not a booking platform. It does not offer any booking services, locations, slots, or a 'GET /ip' booking option. The site provides API endpoints for testing HTTP requests (such as IP inspection, headers, cookies, etc.) but has no booking functionality whatsoever. The task requirements for service_chosen, location_chosen, slot_chosen, details_filled, and ready_to_confirm milestones cannot be met because the website does not contain any of the required booking elements.",
+      "steps": 3,
+      "seconds": 38.0,
+      "run_id": "791c8e11-b60d-41e6-a34e-8b15d10e0172",
+      "trace": [
+        "Visit httpbin.org to understand the page content",
+        "Check for booking services and functionality",
+        "Report that httpbin.org is not a booking site",
+        "Task completed"
+      ],
+      "progress": 0.0
+    },
+    {
+      "id": "get_quote",
+      "label": "Get a quote",
+      "signed_in": false,
+      "milestones": [
+        "quote_page_found",
+        "form_filled",
+        "ready_to_submit"
+      ],
+      "expected_steps": 12,
+      "outcome": "failure",
+      "furthest_milestone": "none",
+      "blocker": "element_not_found",
+      "total": "",
+      "answer": "httpbin.org is a free HTTP testing service, not a commercial API provider. It does not have a quote request form, pricing page, or any customer journey for 'GET /ip'. The site provides free endpoints for developers to test HTTP requests and responses, with no payment, quote, or sign-up required.",
+      "discount": "",
+      "final_url": "https://httpbin.org/",
+      "item_name": "",
+      "item_price": "",
+      "coupon_code": "",
+      "blocker_detail": "httpbin.org is a free HTTP Request & Response testing service, not a commercial API provider. It does not have any quote request form, pricing page, or payment system. The 'GET /ip' endpoint is simply one of the free testing endpoints available on the site. There is no form to fill out, no fields for name/email/phone, no quote request flow, and no submit button to reach. The site returned no matching item or quote functionality.",
+      "steps": 3,
+      "seconds": 54.0,
+      "run_id": "cbb0144b-e4dc-4155-93bf-c9d6f4f72810",
+      "trace": [
+        "Visit httpbin.org to start customer journey",
+        "Understand the site and find quote request for GET /ip",
+        "Task cannot be completed - httpbin.org has no quote request form",
+        "Task completed"
+      ],
+      "progress": 0.0
+    },
+    {
+      "id": "compare_offers",
+      "label": "Compare offerings",
+      "signed_in": false,
+      "milestones": [
+        "list_found",
+        "prices_found",
+        "best_value_reported"
+      ],
+      "expected_steps": 12,
+      "outcome": "success",
+      "furthest_milestone": "best_value_reported",
+      "blocker": "none",
+      "total": "$0.00",
+      "answer": "### What httpbin.org Offers\n\nhttpbin.org is a simple HTTP Request & Response Service (API) that provides endpoints for testing and inspecting HTTP verbs, requests, and responses. The services are organized into the following categories:\n\n1. **Anything** \u2014 Returns anything that is passed to the request (GET /anything)\n2. **Auth** \u2014 Auth methods including Basic and Digest authentication\n3. **Cookies** \u2014 Creates, reads and deletes cookies\n4. **Dynamic Data** \u2014 Generates random and dynamic data (drip, delay, stream, SSE)\n5. **HTTP Methods** \u2014 Testing different HTTP verbs (GET, POST, PUT, PATCH, DELETE, HEAD, OPTIONS, TRACE)\n6. **Images** \u2014 Returns different image formats\n7. **Redirects** \u2014 Returns different redirect responses\n8. **Request Inspection** \u2014 Inspect the request data (headers, cookies, user-agent, form data)\n9. **Response Formats** \u2014 Returns responses in different data formats (JSON, XML, YAML, GZIP, DEFLATE, Brotli, HTML)\n10. **Response Inspection** \u2014 Inspect the response data (caching, headers)\n11. **Status Codes** \u2014 Generates responses with given status codes\n\n### Pricing\n\nThere is **no pricing information** on this website. httpbin.org is a **completely free service**. There are no paid tiers, subscription plans, or costs associated with using any of the API endpoints. The only limitations are usage-based: approximately 17 requests per second per client IP (or 2 per second to body-echo endpoints). No account creation, payment, or sign-in is required.\n\n### Best Value for 'GET /ip'\n\nThe **GET /ip** endpoint (part of the Request Inspection category) returns the client's IP address in JSON format. Since httpbin.org is entirely free with no paid tiers, the GET /ip endpoint costs **$0.00**.\n\n**Best Value Option:**\n- **Item Name:** GET /ip\n- **Item Price:** $0.00 (Free)\n- **Coupon Code:** N/A\n- **Discount:** N/A \u2014 completely free service\n- **Total:** $0.00\n\nThere are no alternative pricing tiers to compare, so the only option is the free one, which is also the best value by default.",
+      "discount": "N/A - completely free service",
+      "final_url": "https://httpbin.org",
+      "item_name": "GET /ip",
+      "item_price": "$0.00 (Free)",
+      "coupon_code": "",
+      "blocker_detail": "No blockers encountered. httpbin.org is a free HTTP request/response testing service with no pricing, no paid tiers, and no payment forms. All endpoints including GET /ip are completely free to use.",
+      "steps": 8,
+      "seconds": 72.0,
+      "run_id": "187a617c-7465-4958-8717-b6579d982205",
+      "trace": [
+        "Visit httpbin.org to explore what the business offers",
+        "Understand what httpbin.org offers and if there is pricing",
+        "Check for pricing information on the page",
+        "Check the GET /ip endpoint to understand its purpose",
+        "Get full list of httpbin.org endpoints and services",
+        "Revisit httpbin.org to list all services and find pricing",
+        "Extract complete list of API endpoints and services",
+        "Report findings about httpbin.org services, pricing, and best value for GET /ip",
+        "Task completed"
+      ],
+      "progress": 1.0
+    }
+  ],
+  "diagnoses": [
+    {
+      "task_id": "book_slot",
+      "blocker": "no_matching_item",
+      "root_cause": "The site httpbin.org is a testing service that only exposes API endpoints (e.g., /ip, /headers) and contains no booking UI elements such as service selectors, location lists, or slot calendars.",
+      "fix": "Add a dedicated booking page (e.g., /book) that includes labeled controls: a <select id=\"service\" aria-label=\"Choose service\">, a <select id=\"location\" aria-label=\"Choose location\">, a <input type=\"date\" id=\"slot\" aria-label=\"Select date\">, and a <button id=\"confirm\" aria-label=\"Confirm booking\">. Ensure the page is indexed by search engines and not blocked by robots.txt.",
+      "severity": "high",
+      "confidence": 1.0
+    },
+    {
+      "task_id": "get_quote",
+      "blocker": "element_not_found",
+      "root_cause": "The site httpbin.org does not contain a quote request form or any pricing page; the agent could not locate any form fields or submit button to complete the task.",
+      "fix": "Add a dedicated quote request page with labeled input fields (e.g., name, email, phone) and a submit button, or remove the quote request task from the site\u2019s workflow. Example snippet:\n\n```html\n<form id=\"quote-form\" action=\"/submit-quote\" method=\"POST\">\n  <label for=\"name\">Name:</label>\n  <input type=\"text\" id=\"name\" name=\"name\" required>\n  <label for=\"email\">Email:</label>\n  <input type=\"email\" id=\"email\" name=\"email\" required>\n  <label for=\"phone\">Phone:</label>\n  <input type=\"tel\" id=\"phone\" name=\"phone\" required>\n  <button type=\"submit\">Get a Quote</button>\n</form>\n```",
+      "severity": "low",
+      "confidence": 0.95
+    }
+  ],
+  "score": {
+    "total": 34,
+    "grade": "F",
+    "success": 22,
+    "efficiency": 7,
+    "readability": 6
+  },
+  "agent_tax": {
+    "avg_steps": 4.7,
+    "usd_per_task": 0.075
+  },
+  "peers": [
+    {
+      "domain": "sendwebrequest.com",
+      "signals": {
+        "fetchable": true,
+        "text_rendered": true,
+        "llms_txt": true,
+        "robots_ok": true,
+        "sitemap": true,
+        "meta": true,
+        "fetch_error": null
+      },
+      "readability": 15
+    },
+    {
+      "domain": "mockbird.mockbird.workers.dev",
+      "signals": {
+        "fetchable": true,
+        "text_rendered": false,
+        "llms_txt": false,
+        "robots_ok": true,
+        "sitemap": false,
+        "meta": false,
+        "fetch_error": "page_not_found"
+      },
+      "readability": 6
+    },
+    {
+      "domain": "funapi.dev",
+      "signals": {
+        "fetchable": true,
+        "text_rendered": true,
+        "llms_txt": true,
+        "robots_ok": true,
+        "sitemap": true,
+        "meta": true,
+        "fetch_error": null
+      },
+      "readability": 15
+    }
+  ]
+}

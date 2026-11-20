@@ -1,0 +1,25 @@
+name: agent-check
+on:
+  workflow_dispatch:
+  push:
+    branches: [main]
+jobs:
+  agent-check:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with: { python-version: "3.11" }
+      - run: pip install -r requirements.txt
+      - run: python -m scripts.ci_check "${{ vars.STAGING_URL }}" buy_cheapest 1.0
+        env:
+          TINYFISH_API_KEY: ${{ secrets.TINYFISH_API_KEY }}
+          LLM_BASE_URL: ${{ vars.LLM_BASE_URL }}
+          LLM_MODEL: ${{ vars.LLM_MODEL }}
+          LLM_API_KEY: ${{ secrets.LLM_API_KEY }}
+          CI_QUERY: running shoes
+  deploy:
+    needs: agent-check
+    runs-on: ubuntu-latest
+    steps:
+      - run: echo "deploy to production here"

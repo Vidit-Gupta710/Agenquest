@@ -1,0 +1,13 @@
+[
+  {
+    "domain": "example.com",
+    "site_type": "services",
+    "total": 14,
+    "grade": "F",
+    "success": 0,
+    "efficiency": 0,
+    "readability": 14,
+    "avg_steps": 3.2,
+    "usd_per_task": 0.052
+  }
+]
