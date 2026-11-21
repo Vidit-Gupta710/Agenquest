@@ -1,34 +1,32 @@
-# Render blueprint for AgentLighthouse
+# Render blueprint for AgentLighthouse — FREE PLAN
 # One service, serves both the UI (web/) and the API (app/*).
 #
 # Deploying:
 # 1. In Render dashboard: New → Blueprint → connect this repo, pick the `v2` branch
 # 2. Render reads this file and creates the service
-# 3. In the service settings, fill in these env vars (marked sync:false below):
-#      TINYFISH_API_KEY   = your personal TinyFish key (needed for My Account)
-#      LLM_BASE_URL       = e.g. https://api.groq.com/openai/v1/
-#      LLM_API_KEY        = your LLM provider key
-#      LLM_MODEL          = e.g. openai/gpt-oss-120b
-# 4. Leave DEMO_MODE=0 for real audits, or set it to 1 to run cached-only (no keys needed)
+# 3. Fill these env vars (marked sync:false below):
+#      TINYFISH_API_KEY, LLM_BASE_URL, LLM_API_KEY, LLM_MODEL
+#    Or set DEMO_MODE=1 to skip keys (cached demo only).
 #
-# Plan choice:
-#   - Free / Starter ($7): full audit + My Account draft endpoints work, but the
-#     Playwright-based login window (/ws/login/*) needs chromium (~400MB). Build step
-#     tries to install chromium and SKIPS silently if there isn't room — in that case,
-#     pre-create a Browser Context Profile in the TinyFish dashboard and set
-#     TINYFISH_PROFILE_ID in env so cart runs work without the in-app login window.
-#   - Standard (2GB) and up: chromium fits; full login window works.
+# Free plan trade-offs:
+#   - 512MB RAM / 0.1 CPU, sleeps after 15 min idle (first hit wakes it in ~30s)
+#   - 750 free instance hours per month
+#   - No persistent disk — data/accounts.json and data/cache/ reset on redeploy
+#     (committed cache files in the repo are still served fresh on each deploy)
+#   - Playwright chromium (~400MB) won't fit, so the in-app login window is disabled;
+#     audits + the UI still work fully, and for My Account you'd pre-create a Browser
+#     Context Profile in the TinyFish dashboard and bake the profile_id into env
+#   - Supports WebSockets and SSE
+#
+# To upgrade later: change `plan: free` → `plan: starter` and add a `disk:` block.
 
 services:
   - type: web
     name: agentlighthouse
     runtime: python
-    plan: starter
+    plan: free
     branch: v2
-    buildCommand: |
-      pip install --upgrade pip
-      pip install -r requirements.txt
-      python -m playwright install chromium || echo "chromium install failed (likely plan too small) — in-app login window will be unavailable, but audits + direct cart-with-profile still work"
+    buildCommand: pip install --upgrade pip && pip install -r requirements.txt
     startCommand: uvicorn app.main:app --host 0.0.0.0 --port $PORT
     healthCheckPath: /api/leaderboard
     autoDeploy: true
@@ -45,7 +43,3 @@ services:
         sync: false
       - key: LLM_MODEL
         sync: false
-    disk:
-      name: data
-      mountPath: /opt/render/project/src/data
-      sizeGB: 1
