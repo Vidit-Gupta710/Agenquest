@@ -126,10 +126,14 @@ function openLoginWindow(session_id, expires_at) {
 function paintFrame(m) {
   const img = new Image();
   img.onload = () => {
-    if (canvas.width !== m.w || canvas.height !== m.h) {
-      canvas.width = m.w; canvas.height = m.h; W = m.w; H = m.h;
+    // size canvas to the JPEG's real resolution (not TinyFish's reported viewport)
+    if (canvas.width !== img.naturalWidth || canvas.height !== img.naturalHeight) {
+      canvas.width = img.naturalWidth;
+      canvas.height = img.naturalHeight;
     }
-    ctx.drawImage(img, 0, 0);
+    // input coordinate frame is still the real viewport; store it from the metadata
+    W = m.w; H = m.h;
+    ctx.drawImage(img, 0, 0, canvas.width, canvas.height);
   };
   img.src = "data:image/jpeg;base64," + m.jpeg;
   $("live-url").textContent = m.url;
