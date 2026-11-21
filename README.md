@@ -8,6 +8,18 @@ In **My Account mode** the same agents work inside the user's own signed-in acco
 
 AI agents are starting to shop, book and apply on people's behalf. Most sites are built only for human eyes — cookie walls, unlabeled icon buttons, CAPTCHAs, infinite scroll, login walls silently turn agents away. Static checkers (robots.txt, llms.txt) can't see this. AgentLighthouse is the behavioural test: it watches an agent try the job, measures how far it gets, and tells the site owner exactly what to fix.
 
+## Deploy to Render
+
+A [`render.yaml`](render.yaml) blueprint ships with the repo. In the Render dashboard:
+*New → Blueprint → connect the repo → pick the `v2` branch*. Render reads the blueprint,
+creates the service, then asks you to fill the env vars:
+`TINYFISH_API_KEY`, `LLM_BASE_URL`, `LLM_API_KEY`, `LLM_MODEL`. Leave `DEMO_MODE=0` for
+live audits (set it to `1` for a cached-only demo that needs no keys at all).
+
+The Starter plan ($7/mo) fits everything *except* the Playwright login window — chromium
+is ~400MB and needs the Standard plan. The build step tries to install chromium and
+silently skips if there isn't room; audits still work on Starter.
+
 ## Quick start
 
 ```powershell

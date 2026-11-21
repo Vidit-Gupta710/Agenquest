@@ -1,0 +1,51 @@
+# Render blueprint for AgentLighthouse
+# One service, serves both the UI (web/) and the API (app/*).
+#
+# Deploying:
+# 1. In Render dashboard: New → Blueprint → connect this repo, pick the `v2` branch
+# 2. Render reads this file and creates the service
+# 3. In the service settings, fill in these env vars (marked sync:false below):
+#      TINYFISH_API_KEY   = your personal TinyFish key (needed for My Account)
+#      LLM_BASE_URL       = e.g. https://api.groq.com/openai/v1/
+#      LLM_API_KEY        = your LLM provider key
+#      LLM_MODEL          = e.g. openai/gpt-oss-120b
+# 4. Leave DEMO_MODE=0 for real audits, or set it to 1 to run cached-only (no keys needed)
+#
+# Plan choice:
+#   - Free / Starter ($7): full audit + My Account draft endpoints work, but the
+#     Playwright-based login window (/ws/login/*) needs chromium (~400MB). Build step
+#     tries to install chromium and SKIPS silently if there isn't room — in that case,
+#     pre-create a Browser Context Profile in the TinyFish dashboard and set
+#     TINYFISH_PROFILE_ID in env so cart runs work without the in-app login window.
+#   - Standard (2GB) and up: chromium fits; full login window works.
+
+services:
+  - type: web
+    name: agentlighthouse
+    runtime: python
+    plan: starter
+    branch: v2
+    buildCommand: |
+      pip install --upgrade pip
+      pip install -r requirements.txt
+      python -m playwright install chromium || echo "chromium install failed (likely plan too small) — in-app login window will be unavailable, but audits + direct cart-with-profile still work"
+    startCommand: uvicorn app.main:app --host 0.0.0.0 --port $PORT
+    healthCheckPath: /api/leaderboard
+    autoDeploy: true
+    envVars:
+      - key: PYTHON_VERSION
+        value: 3.11.9
+      - key: DEMO_MODE
+        value: "0"
+      - key: TINYFISH_API_KEY
+        sync: false
+      - key: LLM_BASE_URL
+        sync: false
+      - key: LLM_API_KEY
+        sync: false
+      - key: LLM_MODEL
+        sync: false
+    disk:
+      name: data
+      mountPath: /opt/render/project/src/data
+      sizeGB: 1
